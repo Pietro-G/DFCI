@@ -1,9 +1,12 @@
-
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.io.File;
 import java.util.ArrayList;
 
+/**
+ * AntigenFabric is the class that parses through the .dat file and creates an Antigen arraylist which can be manipulated
+ * for the UI showcasing purposes.
+ */
 public class AntigenFabric {
 
     public class Antigen
@@ -18,7 +21,7 @@ public class AntigenFabric {
 
     }
 
-    public void parseData()
+    public ArrayList<Antigen> parseData()
     {
         ArrayList<Antigen> antigenArrayList = new ArrayList<>();
         File antigenFile = new File("Antigen_processing_and_presentation.dat");
@@ -56,5 +59,7 @@ public class AntigenFabric {
         } catch (FileNotFoundException e) {
             System.out.println("Antigen_processing_and_presentation.dat not found");
         }
+
+        return antigenArrayList;
     }
 }

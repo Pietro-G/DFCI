@@ -3,6 +3,7 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import java.util.ArrayList;
 
 /*
 Control Panel is the JPanel class that implements all of the different buttons and the control panel
@@ -17,6 +18,8 @@ class ControlPanel extends JPanel implements ActionListener, ChangeListener {
     JSpinner probConfidence;
     JComboBox<String> framedWire;
     JLabel relationshipLabel;
+    AntigenFabric antigenStructure = new AntigenFabric();
+    ArrayList<AntigenFabric.Antigen> AntigenData = antigenStructure.parseData();
 
     /*The constructor of this GUI instanciates all of the elements utilizing the BoxLayout
     and adds the event Listener respective to each button, combo box and color panel.*/
@@ -58,18 +61,15 @@ class ControlPanel extends JPanel implements ActionListener, ChangeListener {
 
 
     //Update grapph once selected
-    private void updateGeneMap() {
-        cPanel.setRotation((double) probConfidence.getModel().getValue(),0.0,0.0);
+    private void updateGeneMap(){
         cPanel.repaint();
     }
 
     //Overrides both of the elements in the GUI, combobox and spinners
     public void actionPerformed(ActionEvent evt) {
         if (framedWire.getSelectedItem().equals("Frame Wire Cube")) { //update graph once another Gene is selected
-            cPanel.wireFrame = true;
             cPanel.repaint();
         } else {
-            cPanel.wireFrame = false;
             cPanel.repaint();
         }
         updateGeneMap();
